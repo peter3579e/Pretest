@@ -1,9 +1,8 @@
 # Pretest
-Objective
-Create a reusable CurrencyListFragment
-Also create a DemoActivity to showcase the CurrencyListFragment
-Please upload to github with a random project name
-Requirement
+# Objective
+- Create a reusable CurrencyListFragment
+- Also create a DemoActivity to showcase the CurrencyListFragment
+- Please upload to github with a random project name
 
 # Overview
 - CurrencyListFragment should receive an array list of CurrencyInfo to create the ui.
