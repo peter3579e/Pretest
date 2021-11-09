@@ -1,10 +1,10 @@
 # Pretest
-# Objective
+### Objective
 - Create a reusable CurrencyListFragment
 - Also create a DemoActivity to showcase the CurrencyListFragment
 - Please upload to github with a random project name
 
-# Overview
+### Overview
 - CurrencyListFragment should receive an array list of CurrencyInfo to create the ui.
 - DemoActivity should provide 1 dataset, Currency List A of CurrencyInfo to
 CurrencyListFragment and the dataset should be queried from local db
