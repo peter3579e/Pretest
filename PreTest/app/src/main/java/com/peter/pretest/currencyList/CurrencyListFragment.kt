@@ -1,15 +1,19 @@
 package com.peter.pretest.currencyList
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.peter.pretest.DemoViewModel
+import com.peter.pretest.PretestApplication
+import com.peter.pretest.R
 import com.peter.pretest.databinding.FragmentCurrencylistBinding
 import com.peter.pretest.ext.getVmFactory
 
@@ -33,6 +37,7 @@ class CurrencyListFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("ShowToast")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         //after  DemoActivity has created DemoViewModel
@@ -43,6 +48,11 @@ class CurrencyListFragment : Fragment() {
 
 
         demoViewModel.currencies.observe(viewLifecycleOwner, Observer {
+            if ( it == null){
+                Toast.makeText(PretestApplication.instance.baseContext,
+                    getString(R.string.please_press_show_button), Toast.LENGTH_SHORT
+                ).show()
+            }
             it?.let {
                 if (it.isNotEmpty()) {
                     adapter.submitList(it)

@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Exam</string>
     <string name="internet_not_connected">Internet not connected</string>
+    <string name="please_press_show_button">Please Press show button first</string>
+    <string name="pretest_database">pretest_database</string>
+    <string name="show">Show</string>
+    <string name="sort">SORT</string>
 </resources>

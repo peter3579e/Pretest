@@ -30,7 +30,7 @@
                 android:layout_width="100dp"
                 android:layout_height="30dp"
                 android:background="@drawable/button_clicked"
-                android:text="Show"
+                android:text="@string/show"
                 android:textColor="@color/white" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -39,7 +39,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="30dp"
                 android:background="@drawable/button_clicked"
-                android:text="SORT"
+                android:text="@string/sort"
                 android:textColor="@color/white" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 

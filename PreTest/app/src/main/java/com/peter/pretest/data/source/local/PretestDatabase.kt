@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.peter.pretest.PretestApplication
+import com.peter.pretest.R
 import com.peter.pretest.data.Source
 import io.realm.Realm
 
@@ -73,7 +75,7 @@ abstract class PretestDatabase : RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         PretestDatabase::class.java,
-                        "pretest_database"
+                        PretestApplication.instance.getString(R.string.pretest_database)
                     )
                         // Wipes and rebuilds instead of migrating if no Migration object.
                         // Migration is not part of this lesson. You can learn more about
