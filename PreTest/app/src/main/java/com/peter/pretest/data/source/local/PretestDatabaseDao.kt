@@ -5,23 +5,15 @@ import androidx.room.*
 import com.peter.pretest.data.Source
 
 /**
- * Created by Wayne Chen in Jul. 2019.
  *
- * Defines methods for using the [Product] class with Room.
+ * Defines methods for using the [Source] class with Room.
  */
 @Dao
 interface PretestDatabaseDao {
 
 
-    @Insert (onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(products : List<Source>)
-
-
-    /**
-     * Deletes the [Product] with given id, colorCode and size
-     */
-    @Query("DELETE from source_table")
-    fun delete()
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(products: List<Source>)
 
     /**
      * Deletes all values from the table.
@@ -33,8 +25,6 @@ interface PretestDatabaseDao {
 
     /**
      * Selects and returns all rows in the table,
-     *
-     * sorted by product_id in ascending order.
      */
     @Query("SELECT * FROM source_table ")
     fun getAllSortedCurrencies(): List<Source>

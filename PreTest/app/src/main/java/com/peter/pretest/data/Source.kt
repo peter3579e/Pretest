@@ -11,9 +11,9 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Source(
  @ColumnInfo(name = "currency_id")
- @Json(name = "id")var id: String,
+ @Json(name = "id") var id: String,
  @ColumnInfo(name = "currency_name")
- @Json(name = "name")var name: String,
+ @Json(name = "name") var name: String,
  @ColumnInfo(name = "currency_symbol")
- @Json(name = "symbol")var symbol: String
+ @Json(name = "symbol") var symbol: String
 ) : Parcelable

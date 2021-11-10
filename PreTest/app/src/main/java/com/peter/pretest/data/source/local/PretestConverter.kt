@@ -16,9 +16,9 @@ class PretestConverter {
     @TypeConverter
     fun convertJsonToList(json: String?): List<Source>? {
         json?.let {
-                val type = Types.newParameterizedType(List::class.java, Source::class.java)
-                val adapter: JsonAdapter<List<Source>> = Moshi.Builder().build().adapter(type)
-                return adapter.fromJson(it)
+            val type = Types.newParameterizedType(List::class.java, Source::class.java)
+            val adapter: JsonAdapter<List<Source>> = Moshi.Builder().build().adapter(type)
+            return adapter.fromJson(it)
         }
         return null
     }

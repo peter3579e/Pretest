@@ -5,8 +5,6 @@ import com.peter.pretest.R
 import com.peter.pretest.data.Source
 import com.peter.pretest.data.source.PretestDataSource
 import com.peter.pretest.util.Logger
-import com.peter.pretest.util.Util.getString
-import com.peter.pretest.util.Util.isInternetConnected
 
 /**
  *

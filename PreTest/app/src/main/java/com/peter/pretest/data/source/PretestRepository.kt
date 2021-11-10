@@ -11,7 +11,7 @@ import com.peter.pretest.data.Source
 interface PretestRepository {
 
 
-    suspend fun insertData(list:List<Source>)
+    suspend fun insertData(list: List<Source>)
 
     suspend fun getAllCurrencies(): List<Source>
 

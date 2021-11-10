@@ -10,10 +10,10 @@ import com.peter.pretest.data.Source
 
 interface PretestDataSource {
 
-    suspend fun insertData(list:List<Source>)
+    suspend fun insertData(list: List<Source>)
 
-   suspend fun getAllCurrencies(): List<Source>
+    suspend fun getAllCurrencies(): List<Source>
 
-   suspend fun clearDatabase()
+    suspend fun clearDatabase()
 
 }

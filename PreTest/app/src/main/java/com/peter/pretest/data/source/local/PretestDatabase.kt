@@ -9,7 +9,6 @@ import io.realm.Realm
 
 
 /**
- * Created by Wayne Chen in Jul. 2019. From Google's sample code.
  *
  * A database that stores Product information.
  * And a global method to get access to the database.
@@ -26,10 +25,10 @@ abstract class PretestDatabase : RoomDatabase() {
     abstract val pretestDatabaseDao: PretestDatabaseDao
 
     /**
-     * Define a companion object, this allows us to add functions on the StylishDatabase class.
+     * Define a companion object, this allows us to add functions on the PretestDatabase class.
      *
-     * For example, clients can call `StylishDatabase.getInstance(context)` to instantiate
-     * a new StylishDatabase.
+     * For example, clients can call `PretestDatabase.getInstance(context)` to instantiate
+     * a new PretestDatabase.
      */
     companion object {
         /**

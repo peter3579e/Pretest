@@ -7,10 +7,14 @@ import androidx.annotation.RequiresApi
 
 object PretestFunctions {
 
+    /**
+     *
+     * For selecting corresponding logo depends on its input name
+     */
     @SuppressLint("UseCompatLoadingForDrawables")
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    fun selectImage(symbol:String): Drawable?{
-        return when (symbol){
+    fun selectImage(symbol: String): Drawable? {
+        return when (symbol) {
             "BCH" -> PretestApplication.instance.getDrawable(R.drawable.logo_bch)
             "BNB" -> PretestApplication.instance.getDrawable(R.drawable.logo_bnb)
             "CRO" -> PretestApplication.instance.getDrawable(R.drawable.logo_cro)

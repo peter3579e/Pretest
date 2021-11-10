@@ -29,13 +29,14 @@ class CurrenciesAdapter(private val fragment: View) :
         fun bind(currencies: Source, fragment: View) {
             binding.name = currencies.name
             binding.symbolName = currencies.symbol
+            //select corresponding logo
             binding.logo.setImageDrawable(selectImage(currencies.symbol))
-            binding.executePendingBindings()
+            //after clicking the hook shows its name
             binding.hook.setOnClickListener {
-                Log.d("peter", "the click value = ${currencies.name})")
                 val snackbar = Snackbar.make(fragment, currencies.name, Snackbar.LENGTH_LONG)
                 snackbar.show()
             }
+            binding.executePendingBindings()
 
         }
     }
@@ -50,7 +51,7 @@ class CurrenciesAdapter(private val fragment: View) :
         )
     }
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position), fragment)
     }

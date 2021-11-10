@@ -15,7 +15,9 @@ class DemoActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<DemoViewModel> { getVmFactory() }
 
-    private var lastClickTime: Long = 0
+    private var lastClickTimeForShow: Long = 0
+
+    private var lastClickTimeForSort: Long = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,40 +29,25 @@ class DemoActivity : AppCompatActivity() {
         binding.showButton.setOnClickListener {
 
             // preventing double, using threshold of 1000 ms
-            if (SystemClock.elapsedRealtime() - lastClickTime < 1000){
-                Log.d("peter","click to fast")
+            if (SystemClock.elapsedRealtime() - lastClickTimeForShow < 1000) {
                 return@setOnClickListener;
-            }else{
-                Log.d("peter", "show is clicked")
+            } else {
                 viewModel.getAllCurrencies()
             }
 
-            lastClickTime = SystemClock.elapsedRealtime()
+            lastClickTimeForShow = SystemClock.elapsedRealtime()
 
         }
 
         binding.sortButton.setOnClickListener {
-            if (SystemClock.elapsedRealtime() - lastClickTime < 1000){
-                Log.d("peter","click to fast")
+            if (SystemClock.elapsedRealtime() - lastClickTimeForSort < 1000) {
                 return@setOnClickListener;
-            }else{
+            } else {
                 viewModel.sortCurrencies()
-                Log.d("peter", "sort is clicked")
             }
 
-            lastClickTime = SystemClock.elapsedRealtime()
+            lastClickTimeForSort = SystemClock.elapsedRealtime()
         }
-
-
-
-
-//        viewModel.currencies.observe(this, Observer {
-//                viewModel.compareToInputJson(it)
-//                if (it.isNotEmpty()){
-//                    Log.d("peter","the value in database = $it")
-//                    Log.d("peter","run")
-//                }
-//        })
 
     }
 

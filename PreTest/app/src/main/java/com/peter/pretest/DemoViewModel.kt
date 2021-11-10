@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import java.io.IOException
 import java.lang.Exception
 
-class DemoViewModel (private val pretestRepository: PretestRepository): ViewModel() {
+class DemoViewModel(private val pretestRepository: PretestRepository?) : ViewModel() {
 
     private val pretestConverter = PretestConverter()
 
@@ -39,28 +39,30 @@ class DemoViewModel (private val pretestRepository: PretestRepository): ViewMode
     }
 
 
-    private fun convertJsonToList (){
+    private fun convertJsonToList() {
         try {
             coroutineScope.launch {
 
-                pretestConverter.convertJsonToList(getJsonDataFromAsset(PretestApplication.instance.applicationContext,"CurrencyList.json"))?.let {
+                pretestConverter.convertJsonToList(
+                    getJsonDataFromAsset(
+                        PretestApplication.instance.applicationContext,
+                        "CurrencyList.json"
+                    )
+                )?.let {
 
                     sourceList = it
-                    Log.d("peter","$sourceList")
 
-                    Log.d("peter","${this.coroutineContext}")
+                    dataBase = pretestRepository!!.getAllCurrencies()
 
-                    dataBase = pretestRepository.getAllCurrencies()
-
-                    compareToInputJson()
+                    compareToInputJson(dataBase,sourceList)
                 }
             }
-        }catch (e: Exception){
+        } catch (e: Exception) {
             throw e
         }
     }
 
-    private fun getJsonDataFromAsset(context: Context, fileName: String): String? {
+    fun getJsonDataFromAsset(context: Context, fileName: String): String? {
         val jsonString: String
         try {
             jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
@@ -71,48 +73,50 @@ class DemoViewModel (private val pretestRepository: PretestRepository): ViewMode
         return jsonString
     }
 
-    fun getAllCurrencies (){
+    fun getAllCurrencies() {
         try {
             coroutineScope.launch {
-                _currencies.postValue(pretestRepository.getAllCurrencies())
+                _currencies.postValue(pretestRepository!!.getAllCurrencies())
             }
         } catch (ioException: IOException) {
             ioException.printStackTrace()
         }
     }
 
-    fun sortCurrencies(){
-        _currencies.value = _currencies.value?.sortedWith(compareBy<Source> {it.name})
+    fun sortCurrencies() {
+        _currencies.value = _currencies.value?.sortedWith(compareBy<Source> { it.name })
     }
 
 
     private fun insetToDatabase(list: List<Source>) {
         try {
             coroutineScope.launch {
-                pretestRepository.insertData(list)
+                pretestRepository!!.insertData(list)
             }
-        }catch (e: Exception){
+        } catch (e: Exception) {
             throw e
         }
     }
 
-    private fun compareToInputJson(){
+  fun compareToInputJson(dataBase:List<Source>,jsonList:List<Source>):Boolean {
         dataBase.let { db ->
-            sourceList.let { input ->
-                if (db.size != input.size){
+            jsonList.let { input ->
+                if (db.size != input.size) {
                     insetToDatabase(input)
-                }else{
-                    val tempDb = db.sortedWith(compareBy<Source> {it.id})
-                    val tempInput = input.sortedWith(compareBy<Source> {it.id})
-                    for (index in db.indices){
-                        if (tempDb[index].id != tempInput[index].id){
+                    return false
+                } else {
+                    val tempDb = db.sortedWith(compareBy<Source> { it.id })
+                    val tempInput = input.sortedWith(compareBy<Source> { it.id })
+                    for (index in db.indices) {
+                        if (tempDb[index].id != tempInput[index].id) {
                             insetToDatabase(input)
-                            break
+                            return false
                         }
                     }
                 }
             }
         }
+      return true
     }
 
 

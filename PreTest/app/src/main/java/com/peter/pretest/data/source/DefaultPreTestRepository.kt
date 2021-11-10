@@ -13,7 +13,7 @@ class DefaultPreTestRepository(
     private val pretestLocalDataSource: PretestDataSource
 ) : PretestRepository {
 
-    override suspend fun insertData(list : List<Source>) {
+    override suspend fun insertData(list: List<Source>) {
         return pretestLocalDataSource.insertData(list)
     }
 

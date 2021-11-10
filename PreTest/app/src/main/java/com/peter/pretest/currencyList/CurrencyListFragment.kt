@@ -35,6 +35,7 @@ class CurrencyListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        //after  DemoActivity has created DemoViewModel
         demoViewModel = ViewModelProvider(requireActivity()).get(DemoViewModel::class.java)
 
         adapter = CurrenciesAdapter(this.requireView())
@@ -42,10 +43,8 @@ class CurrencyListFragment : Fragment() {
 
 
         demoViewModel.currencies.observe(viewLifecycleOwner, Observer {
-            Log.d("peter", "the button = $it")
             it?.let {
                 if (it.isNotEmpty()) {
-                    Log.d("peter", "fragmentValue = $it")
                     adapter.submitList(it)
                     adapter.notifyDataSetChanged()
                 }
