@@ -32,7 +32,7 @@ class DemoActivity : AppCompatActivity() {
 
             // preventing double, using threshold of 1000 ms
             if (SystemClock.elapsedRealtime() - lastClickTimeForShow < 1000) {
-                return@setOnClickListener;
+                return@setOnClickListener
             } else {
                 viewModel.getAllCurrencies()
             }
@@ -43,7 +43,7 @@ class DemoActivity : AppCompatActivity() {
 
         binding.sortButton.setOnClickListener {
             if (SystemClock.elapsedRealtime() - lastClickTimeForSort < 1000) {
-                return@setOnClickListener;
+                return@setOnClickListener
             } else {
                 viewModel.sortCurrencies()
             }

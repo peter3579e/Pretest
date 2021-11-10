@@ -31,7 +31,7 @@ class DemoViewModel(private val pretestRepository: PretestRepository?) : ViewMod
     val currencies: LiveData<List<Source>>
         get() = _currencies
 
-    // the Coroutine runs using the Main (UI) dispatcher
+    // the Coroutine runs using the Main (IO) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.IO)
 
     init {
@@ -46,7 +46,7 @@ class DemoViewModel(private val pretestRepository: PretestRepository?) : ViewMod
                 pretestConverter.convertJsonToList(
                     getJsonDataFromAsset(
                         PretestApplication.instance.applicationContext,
-                        "CurrencyList.json"
+                        PretestApplication.instance.getString(R.string.json_file)
                     )
                 )?.let {
 

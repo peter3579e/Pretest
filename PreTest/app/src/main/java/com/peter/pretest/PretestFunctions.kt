@@ -1,9 +1,13 @@
 package com.peter.pretest
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Build
+import android.view.View
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import com.google.android.material.snackbar.Snackbar
 
 object PretestFunctions {
 
@@ -31,6 +35,16 @@ object PretestFunctions {
             "USDC" -> PretestApplication.instance.getDrawable(R.drawable.logo_usdc)
             else -> null
         }
+    }
+
+    fun showSnackBar (view: View, name: String, length: Int){
+        Snackbar.make(view, name, length).show()
+    }
+
+    fun showToast(context:Context,content:String,length:Int){
+        Toast.makeText(context,
+            content, length
+        ).show()
     }
 
 }

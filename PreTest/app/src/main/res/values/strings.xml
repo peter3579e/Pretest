@@ -5,4 +5,5 @@
     <string name="pretest_database">pretest_database</string>
     <string name="show">Show</string>
     <string name="sort">SORT</string>
+    <string name="json_file">CurrencyList.json</string>
 </resources>

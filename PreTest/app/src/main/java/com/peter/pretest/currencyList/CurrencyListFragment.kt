@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.peter.pretest.DemoViewModel
 import com.peter.pretest.PretestApplication
+import com.peter.pretest.PretestFunctions
 import com.peter.pretest.R
 import com.peter.pretest.databinding.FragmentCurrencylistBinding
 import com.peter.pretest.ext.getVmFactory
@@ -48,10 +49,12 @@ class CurrencyListFragment : Fragment() {
 
 
         demoViewModel.currencies.observe(viewLifecycleOwner, Observer {
-            if ( it == null){
-                Toast.makeText(PretestApplication.instance.baseContext,
-                    getString(R.string.please_press_show_button), Toast.LENGTH_SHORT
-                ).show()
+            if (it == null) {
+                PretestFunctions.showToast(
+                    PretestApplication.instance.baseContext,
+                    getString(R.string.please_press_show_button),
+                    Toast.LENGTH_SHORT
+                )
             }
             it?.let {
                 if (it.isNotEmpty()) {

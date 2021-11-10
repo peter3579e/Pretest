@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.peter.pretest.PretestApplication
 import com.peter.pretest.PretestFunctions.selectImage
+import com.peter.pretest.PretestFunctions.showSnackBar
 import com.peter.pretest.R
 import com.peter.pretest.data.Source
 import com.peter.pretest.databinding.ItemCurrenciesCellBinding
@@ -33,8 +34,7 @@ class CurrenciesAdapter(private val fragment: View) :
             binding.logo.setImageDrawable(selectImage(currencies.symbol))
             //after clicking the hook shows its name
             binding.hook.setOnClickListener {
-                val snackbar = Snackbar.make(fragment, currencies.name, Snackbar.LENGTH_LONG)
-                snackbar.show()
+                showSnackBar(fragment,currencies.name,Snackbar.LENGTH_LONG)
             }
             binding.executePendingBindings()
 
