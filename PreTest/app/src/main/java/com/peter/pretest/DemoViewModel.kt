@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import java.io.IOException
 import java.lang.Exception
 
-class DemoViewModel(private val pretestRepository: PretestRepository?) : ViewModel() {
+class DemoViewModel(private val pretestRepository: PretestRepository) : ViewModel() {
 
     private val pretestConverter = PretestConverter()
 
@@ -52,7 +52,7 @@ class DemoViewModel(private val pretestRepository: PretestRepository?) : ViewMod
 
                     sourceList = it
 
-                    dataBase = pretestRepository!!.getAllCurrencies()
+                    dataBase = pretestRepository.getAllCurrencies()
 
                     compareToInputJson(dataBase,sourceList)
                 }
@@ -76,7 +76,7 @@ class DemoViewModel(private val pretestRepository: PretestRepository?) : ViewMod
     fun getAllCurrencies() {
         try {
             coroutineScope.launch {
-                _currencies.postValue(pretestRepository!!.getAllCurrencies())
+                _currencies.postValue(pretestRepository.getAllCurrencies())
             }
         } catch (ioException: IOException) {
             ioException.printStackTrace()
@@ -91,7 +91,7 @@ class DemoViewModel(private val pretestRepository: PretestRepository?) : ViewMod
     private fun insetToDatabase(list: List<Source>) {
         try {
             coroutineScope.launch {
-                pretestRepository!!.insertData(list)
+                pretestRepository.insertData(list)
             }
         } catch (e: Exception) {
             throw e
