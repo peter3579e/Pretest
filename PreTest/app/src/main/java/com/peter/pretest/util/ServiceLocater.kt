@@ -20,7 +20,6 @@ object ServiceLocater {
     fun provideTasksRepository(context: Context): PretestRepository {
         synchronized(this) {
             return preTestRepository
-                ?: preTestRepository
                 ?: createPretestRepository(context)
         }
     }
