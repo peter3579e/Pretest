@@ -22,7 +22,7 @@ class DemoViewModelTestLocal {
 
     @Before
     fun setup() {
-        viewModel = DemoViewModel(null)
+        viewModel = DemoViewModel(FakePretestRepository())
     }
 
     /**

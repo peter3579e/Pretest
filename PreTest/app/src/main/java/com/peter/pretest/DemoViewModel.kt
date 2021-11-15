@@ -119,5 +119,14 @@ class DemoViewModel(private val pretestRepository: PretestRepository) : ViewMode
       return true
     }
 
+    /**
+     * When the [ViewModel] is finished, we cancel our coroutine [viewModelJob], which tells the
+     * Retrofit service to stop.
+     */
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
+
 
 }
